@@ -3,7 +3,7 @@
 Empowering waste collectors in Nairobi with USSD technology for optimized plastic collection routes and real-time pricing.
 ---
 
-## 📋 Table of Contents
+### Table of Contents
 1. [Prerequisites](#prerequisites)
 2. [Setup Instructions](#setup-instructions)
 3. [Database Initialization](#database-initialization)
@@ -17,7 +17,7 @@ Empowering waste collectors in Nairobi with USSD technology for optimized plasti
 
 ---
 
-## ✅ Prerequisites
+## Prerequisites
 
 Before you begin, make sure you have installed:
 - [Node.js (v16+)](https://nodejs.org/)
@@ -26,16 +26,16 @@ Before you begin, make sure you have installed:
 
 ---
 
-## 🚀 Setup Instructions
+## Setup Instructions
 
 Follow these steps carefully:
 
-### 1️⃣ Clone the Repository
+### 1 Clone the Repository
 ```bash
 git clone https://github.com/Muen1/recycle-route-kenya.git
 cd recycle-route-kenya
 
-2️⃣ Install Dependencies
+2 Install Dependencies
 bash
 Copy
 Edit
@@ -52,7 +52,7 @@ Chart.js
 
 Bootstrap
 
-3️⃣ Configure Environment Variables
+3 Configure Environment Variables
 Create a .env file in the root directory:
 
 bash
@@ -69,8 +69,8 @@ SESSION_SECRET=your_secure_secret_here
 NODE_ENV=development
 Replace your_secure_secret_here with a strong, random string.
 
-🛠 Database Initialization
-1️⃣ Run the database setup script:
+ Database Initialization
+1 Run the database setup script:
 bash
 Copy
 Edit
@@ -83,20 +83,20 @@ Edit
 Database initialized successfully
 Admin user created: admin@recycleroute.co.ke
 Sample collector created: collector@example.com
-2️⃣ Confirm database file exists:
+2 Confirm database file exists:
 bash
 Copy
 Edit
 /database/recycleroute.db
-🏃‍♂️ Running the Application
+Running the Application
 Choose one of these modes:
 
-✅ Development Mode (with auto-restart)
+ Development Mode (with auto-restart)
 bash
 Copy
 Edit
 npm run dev
-🚀 Production Mode
+ Production Mode
 bash
 Copy
 Edit
@@ -108,7 +108,7 @@ Copy
 Edit
 Server running on http://localhost:3000
 Database connected successfully
-🌐 Accessing the Application
+ Accessing the Application
 Open your browser and visit:
 
 arduino
@@ -125,7 +125,7 @@ Admin dashboard
 
 Collector dashboard
 
-🔑 Testing Credentials
+ Testing Credentials
 Use these accounts to log in:
 
 Admin Dashboard
@@ -138,7 +138,7 @@ Email: collector@example.com
 
 Password: collector123
 
-🗂 Project Structure
+ Project Structure
 csharp
 Copy
 Edit
@@ -181,18 +181,16 @@ Clear browser cache (Ctrl+Shift+R)
 
 Check that files exist under public/css/
 
-📄 License
+ License
 This project is licensed under the MIT License.
 See LICENSE for details.
 
-📬 Support
+ Support
 For help or feedback:
 
-📧 Email: support@recycleroute.co.ke
+ Email: support@recycleroute.co.ke
 
-🐦 Twitter: @RecycleRouteKE
-
-✅ This README covers everything:
+ This README covers everything:
 
 All setup steps
 
@@ -206,16 +204,9 @@ Test credentials
 
 Project structure & troubleshooting
 
-If you'd like, I can also help you write a short section for deployment (e.g., to Heroku, Render, or Vercel).
-Let me know! 🚀
 
-yaml
-Copy
-Edit
 
----
-
-✅ **Next step (important):**  
+ **Next step (important):**  
 After you copy this into your `README.md` file, save the file, then do:
 
 ```bash
