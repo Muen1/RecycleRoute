@@ -21,15 +21,16 @@ npm install
 
 ### 3 Configure Environment Variables
 Create a .env file in the root directory:
-
 Database Initialization
-1 Run the database setup script:
+### 4 Run the database setup script:
 npm run init-db
-2 Confirm database file exists:
+### 5 Confirm database file exists:
 npm run dev
 npm start
+### 6 Run 
+npm run dev 
 Server running on http://localhost:3000
-Accessing the Application
+### 7 Accessing the Application
 Open your browser and visit
 http://localhost:3000
 
