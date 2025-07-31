@@ -1,9 +1,6 @@
-# RecycleRoute Kenya - Full-Stack Application
+# RecycleRoute-Kenya 
 
 Empowering waste collectors in Nairobi with USSD technology for optimized plastic collection routes and real-time pricing.
-
-![RecycleRoute Kenya Screenshot](https://images.unsplash.com/photo-1621293954908-907159247fc8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80)
-
 ---
 
 ## 📋 Table of Contents
