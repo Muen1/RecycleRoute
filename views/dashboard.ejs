@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= user.role === 'admin' ? 'Admin' : 'Collector' %> Dashboard - RecycleRoute Kenya</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Header/Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <i class="fas fa-recycle me-2"></i>Recycle<span>Route</span> Kenya
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fas fa-user me-1"></i> <%= user.name %></a>
+                    </li>
+                </ul>
+                <div class="ms-lg-3">
+                    <a href="/logout" class="btn btn-outline-primary">Logout</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="dashboard-container">
+        <% if (dashboardType === 'admin') { %>
+            <h1 class="mb-4">Admin Dashboard</h1>
+            <div class="row mb-4">
+                <div class="col-md-3">
+                    <div class="stats-card primary">
+                        <h4>KES <%= stats.totalPayments.toLocaleString() %></h4>
+                        <p>Total Payments</p>
+                        <i class="fas fa-money-bill-wave fa-2x"></i>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stats-card secondary">
+                        <h4><%= stats.totalPlastic.toLocaleString() %> kg</h4>
+                        <p>Plastic Collected</p>
+                        <i class="fas fa-recycle fa-2x"></i>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stats-card info">
+                        <h4><%= stats.activeCollectors %></h4>
+                        <p>Active Collectors</p>
+                        <i class="fas fa-users fa-2x"></i>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stats-card warning">
+                        <h4><%= stats.routeEfficiency %>%</h4>
+                        <p>Route Efficiency</p>
+                        <i class="fas fa-route fa-2x"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mb-4">
+                <div class="col-md-8">
+                    <div class="chart-container">
+                        <h4>Collection Trends</h4>
+                        <canvas id="collectionChart"></canvas>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="chart-container">
+                        <h4>Plastic Distribution</h4>
+                        <canvas id="plasticChart"></canvas>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mb-4">
+                <div class="col-md-6">
+                    <div class="chart-container">
+                        <h4>Top Collectors</h4>
+                        <div class="dashboard-table">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Collector</th>
+                                        <th>Weight (kg)</th>
+                                        <th>Earnings</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% topCollectors.forEach(collector => { %>
+                                        <tr>
+                                            <td><%= collector.name %></td>
+                                            <td><%= collector.weight %></td>
+                                            <td>KES <%= collector.earnings %></td>
+                                        </tr>
+                                    <% }); %>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="chart-container">
+                        <h4>Recent Collections</h4>
+                        <div class="dashboard-table">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Collector</th>
+                                        <th>Plastic</th>
+                                        <th>Weight</th>
+                                        <th>Amount</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% recentCollections.forEach(collection => { %>
+                                        <tr>
+                                            <td><%= collection.name %></td>
+                                            <td><%= collection.plastic %></td>
+                                            <td><%= collection.weight %> kg</td>
+                                            <td>KES <%= collection.amount %></td>
+                                        </tr>
+                                    <% }); %>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="chart-container">
+                        <h4>Collection Map</h4>
+                        <div class="map-container">
+                            <i class="fas fa-map-marked-alt fa-3x me-3"></i>
+                            <h3>Real-time Collector Tracking Map</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <% } else { %>
+            <h1 class="mb-4">Collector Dashboard</h1>
+            <div class="row mb-4">
+                <div class="col-md-6">
+                    <div class="stats-card primary">
+                        <h4>KES <%= stats.totalEarnings.toLocaleString() %></h4>
+                        <p>Total Earnings</p>
+                        <i class="fas fa-money-bill-wave fa-2x"></i>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="stats-card secondary">
+                        <h4><%= stats.totalPlastic.toLocaleString() %> kg</h4>
+                        <p>Plastic Collected</p>
+                        <i class="fas fa-recycle fa-2x"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mb-4">
+                <div class="col-md-12">
+                    <div class="chart-container">
+                        <h4>My Collection Route</h4>
+                        <div class="map-container">
+                            <i class="fas fa-route fa-3x me-3"></i>
+                            <h3>Today's Optimized Collection Route</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="chart-container">
+                        <h4>Current Plastic Prices</h4>
+                        <div class="dashboard-table">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Plastic Type</th>
+                                        <th>Price (KES/kg)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% plasticPrices.forEach(price => { %>
+                                        <tr>
+                                            <td><%= price.type %></td>
+                                            <td><%= price.price %></td>
+                                        </tr>
+                                    <% }); %>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="chart-container">
+                        <h4>Recent Payments</h4>
+                        <div class="dashboard-table">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Amount</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% recentPayments.forEach(payment => { %>
+                                        <tr>
+                                            <td><%= payment.date %></td>
+                                            <td>KES <%= payment.amount %></td>
+                                            <td><span class="badge bg-success"><%= payment.status %></span></td>
+                                        </tr>
+                                    <% }); %>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <% } %>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/script.js"></script>
+</body>
+</html>
