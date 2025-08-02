@@ -103,3 +103,6 @@ recycle-route-kenya/
 ├── app.js             # Entry point
 ├── package.json       
 └── README.md          # This file
+
+## Demo video
+https://youtu.be/lxVRQ8NvhzE
